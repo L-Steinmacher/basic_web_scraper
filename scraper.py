@@ -30,10 +30,10 @@ time.sleep(5)
 page_source = driver.page_source
 soup = BeautifulSoup(page_source, features="xml")
 
-heading = soup.find("span", class_="uk-display-inline-block")
-
 # Grab all the data points
 points = soup.find_all(class_="ct-point")
+heading = soup.find("span", class_="uk-display-inline-block").text
+time_span = soup.find("span", class_="psp-day-number").text
 
 # Touples containing the data of ping and date from the meta
 highest = (0, "")
@@ -55,11 +55,11 @@ for point in points:
 average = round(total / count, 2)
 
 if args.verbose:
-    print(f"{heading.text} recieved Highest ping: {highest[0]}ms on {highest[1]}, Min: {min[0]}ms on {min[1]}, and the Average: {average}ms on {date.today()}.")
+    print(f"{heading} recieved Highest ping: {highest[0]}ms on {highest[1]}, Min: {min[0]}ms on {min[1]}, and the Average: {average}ms in the past {time_span} days.")
 elif args.minimum:
-    print(f"{heading.text} Lowest Ping {min[0]}ms on {min[1]} ")
+    print(f"{heading} Lowest Ping {min[0]}ms on {min[1]} in the past{time_span} days")
 elif args.average:
-    print(f"The average Ping for {heading.text} is {average}ms as of {date.today()}")
+    print(f"The average Ping for {heading} is {average}ms in the past {time_span} days")
 else:
-    print(f"{heading.text} Highest Ping {highest[0]}ms on {highest[1]}")
+    print(f"{heading} Highest Ping {highest[0]}ms on {highest[1]} in the past {time_span} days")
 
