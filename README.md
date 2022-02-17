@@ -1,5 +1,5 @@
-# basic_web_scraper
-A basic web scraper for DiverseIo
+# Basic Web Scraper
+#### A basic web scraper for DiverseIo
 
 ## Set up Project
 1) Within the root of the repo, run python -m venv "env name"  to create your own virtual environment
